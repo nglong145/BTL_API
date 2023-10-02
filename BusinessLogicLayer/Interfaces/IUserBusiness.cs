@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer
+namespace BusinessLogicLayer
 {
-    public partial interface ITaiKhoanRepository
+    public partial interface IUserBusiness
     {
-        bool Login(string taikhoan, string matkhau);
+        UserModel Login(string taikhoan, string matkhau);
     }
 }

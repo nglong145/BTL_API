@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public partial interface ITaiKhoanRepository
+    public partial interface IHoaDonRespository
     {
-        bool Login(string taikhoan, string matkhau);
+        bool Create(HoaDonModel model);
+        //bool Update(HoaDonModel model);
     }
 }

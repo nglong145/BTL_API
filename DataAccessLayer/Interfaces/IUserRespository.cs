@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public partial interface ITaiKhoanRepository
+    public partial interface IUserRespository
     {
-        bool Login(string taikhoan, string matkhau);
+        UserModel Login(string taikhoan, string matkhau);
     }
 }
