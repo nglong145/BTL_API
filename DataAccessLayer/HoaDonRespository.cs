@@ -16,10 +16,10 @@ namespace DataAccessLayer
             try
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_create_hoadon",
-                "@ngaytao", model.NgayTao, 
-                "@tenkh", model.TenKH,
-                "@diachi", model.DiaChi,
-                "@sodt", model.SoDT,
+                "@ngaytao", model.ngaytao, 
+                "@tenkh", model.tenKH,
+                "@diachi", model.diachi,
+                "@sodt", model.sodt,
                 "@list_json_chitiethoadon", model.list_json_chitiethoadon != null ? MessageConvert.SerializeObject(model.list_json_chitiethoadon) : null);
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
