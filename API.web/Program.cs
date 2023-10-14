@@ -18,6 +18,8 @@ builder.Services.AddTransient<IUserRespository, UserRepository>();
 builder.Services.AddTransient<IUserBusiness, UserBusiness>();
 builder.Services.AddTransient<IHoaDonRespository, HoaDonRepository>();
 builder.Services.AddTransient<IHoaDonBusiness, HoaDonBusiness>();
+builder.Services.AddTransient<IDanhMucRepository, DanhMucRepository>();
+builder.Services.AddTransient<IDanhMucBusiness, DanhMucBusiness>();
 
 
 // configure strongly typed settings objects

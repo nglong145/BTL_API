@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace DataModel
     {
         public int masanpham { get; set; }
         public string tensanpham { get; set; }
-        public string tendanhmuc { get; set; }
+        public int madanhmuc { get; set; }
         public string anhsanpham { get; set; }
         public double gia { get; set; }
         public string motasanpham { get; set; }

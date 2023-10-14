@@ -10,5 +10,7 @@ namespace BusinessLogicLayer
     public partial interface ISanPhamBusiness
     {
         SanPhamModel GetDataById(int id);
+        SanPhamModel GetAll();
+        bool Create(SanPhamModel spmodel);
     }
 }

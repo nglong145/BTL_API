@@ -21,5 +21,12 @@ namespace API.web.Controllers
         {
             return _sanphamBusiness.GetDataById(id);
         }
+        [Route("get-all")]
+        [HttpGet]
+        public SanPhamModel GetAll()
+        {
+            return _sanphamBusiness.GetAll();
+        }
+
     }
 }

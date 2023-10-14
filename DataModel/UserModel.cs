@@ -2,8 +2,8 @@
 {
     public class UserModel
     {
-        public int MaTaiKhoan { get; set; }
-        public int MaLoaiTaiKhoan { get; set; }
+        public int mataikhoan { get; set; }
+        public int maloaitaikhoan { get; set; }
         public string TenTaiKhoan { get; set; }
         public string MatKhau { get; set; }
         public string Email { get; set; }

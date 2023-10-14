@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public partial interface ISanPhamRepository
+    public partial interface IDanhMucRepository
     {
-        SanPhamModel GetDataById(int id);
-        SanPhamModel GetAll();
-        bool Create (SanPhamModel spmodel);
+        bool Create(DanhMucModel catemodel);
     }
 }
