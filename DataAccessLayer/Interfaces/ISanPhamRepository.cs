@@ -12,5 +12,6 @@ namespace DataAccessLayer
         SanPhamModel GetDataById(int id);
         SanPhamModel GetAll();
         bool Create (SanPhamModel spmodel);
+        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensp);
     }
 }
