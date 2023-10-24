@@ -32,7 +32,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public SanPhamModel GetAll() 
+        public List<SanPhamModel> GetAll() 
         {
             string msgErrror = "";
             try
@@ -40,7 +40,7 @@ namespace DataAccessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgErrror, "sp_sanpham_get_all");
                 if(!string.IsNullOrEmpty(msgErrror))
                     throw new Exception(msgErrror);
-                return dt.ConvertTo<SanPhamModel>().FirstOrDefault();
+                return dt.ConvertTo<SanPhamModel>().ToList();
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace DataAccessLayer
             {
                 var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sanpham_create",
                 "@tensp", spmodel.tensanpham,
-                "@madm", spmodel.madanhmuc,
+                "@tendm", spmodel.tendanhmuc,
                 "@anh", spmodel.anhsanpham,
                 "@gia", spmodel.gia,
                 "@mota", spmodel.motasanpham);
@@ -70,6 +70,50 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
+
+        public bool Update(SanPhamModel spmodel)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sanpham_update",
+                "@masp", spmodel.masanpham,
+                "@tensp", spmodel.tensanpham,
+                "@tendm", spmodel.tendanhmuc,
+                "@anh", spmodel.anhsanpham,
+                "@gia", spmodel.gia,
+                "@mota", spmodel.motasanpham);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Delete(int masanpham)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _dbHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "sp_sanpham_delete",
+                "@masp", masanpham);
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensp)
         {
             string msgError = "";
@@ -79,7 +123,46 @@ namespace DataAccessLayer
                 var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_sanpham_search",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@tesnsp", tensp);
+                    "@tensp", tensp);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<SanPhamModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<SanPhamModel> Search_lowtohigh(int pageIndex, int pageSize, out long total)
+        {
+            string msgError = "";
+            total = 0;
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_sanpham_search_low_to_high",
+                    "@page_index", pageIndex,
+                    "@page_size", pageSize);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<SanPhamModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<SanPhamModel> Search_hightolow(int pageIndex, int pageSize, out long total)
+        {
+            string msgError = "";
+            total = 0;
+            try
+            {
+                var dt = _dbHelper.ExecuteSProcedureReturnDataTable(out msgError, "sp_sanpham_search_high_to_low",
+                    "@page_index", pageIndex,
+                    "@page_size", pageSize);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];

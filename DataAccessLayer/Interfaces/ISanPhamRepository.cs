@@ -10,8 +10,12 @@ namespace DataAccessLayer
     public partial interface ISanPhamRepository
     {
         SanPhamModel GetDataById(int id);
-        SanPhamModel GetAll();
+        public List<SanPhamModel> GetAll();
         bool Create (SanPhamModel spmodel);
+        bool Update(SanPhamModel spmodel);
+        bool Delete(int masanpham);
         public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tensp);
+        public List<SanPhamModel> Search_lowtohigh(int pageIndex, int pageSize, out long total);
+        public List<SanPhamModel> Search_hightolow(int pageIndex, int pageSize, out long total);
     }
 }

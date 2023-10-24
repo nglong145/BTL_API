@@ -10,6 +10,10 @@ namespace API_admin.Controllers
     public class DanhMucController : ControllerBase
     {
         private IDanhMucBusiness _danhmucBusiness;
+        public DanhMucController(IDanhMucBusiness danhmucBusiness)
+        {
+            _danhmucBusiness = danhmucBusiness;
+        }
         [Route("create-danhmuc")]
         [HttpPost]
         public DanhMucModel CreateItem([FromBody] DanhMucModel catemodel)

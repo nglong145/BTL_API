@@ -10,9 +10,9 @@ namespace DataModel
     {
         public int masanpham { get; set; }
         public string tensanpham { get; set; }
-        public int madanhmuc { get; set; }
+        public string tendanhmuc { get; set; }
         public string anhsanpham { get; set; }
-        public double gia { get; set; }
+        public decimal gia { get; set; }
         public string motasanpham { get; set; }
     }
 }

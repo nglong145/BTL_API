@@ -14,13 +14,14 @@ builder.Services.AddCors(options =>
 builder.Services.AddTransient<IDatabaseHelper, DatabaseHelper>();
 builder.Services.AddTransient<IDanhMucRepository, DanhMucRepository>();
 builder.Services.AddTransient<IDanhMucBusiness, DanhMucBusiness>();
+builder.Services.AddTransient<ISanPhamRepository, SanPhamRepository>();
+builder.Services.AddTransient<ISanPhamBusiness, SanPhamBusiness>();
 
 
+IConfiguration configuration = builder.Configuration;
+var appSettingsSection = configuration.GetSection("AppSettings");
+builder.Services.Configure<AppSettings>(appSettingsSection);
 
-// configure strongly typed settings objects
-//IConfiguration configuration = builder.Configuration;
-//var appSettingsSection = configuration.GetSection("AppSettings");
-//builder.Services.Configure<AppSettings>(appSettingsSection);
 
 //// configure jwt authentication
 //var appSettings = appSettingsSection.Get<AppSettings>();

@@ -32,7 +32,7 @@ namespace BusinessLogicLayer
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, user.TenTaiKhoan.ToString()),
-                    new Claim(ClaimTypes.StreetAddress, user.Email)
+                    new Claim(ClaimTypes.Email, user.Email)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)

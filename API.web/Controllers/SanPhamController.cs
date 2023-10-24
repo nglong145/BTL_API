@@ -23,7 +23,7 @@ namespace API.web.Controllers
         }
         [Route("get-all")]
         [HttpGet]
-        public SanPhamModel GetAll()
+        public List<SanPhamModel> GetAll()
         {
             return _sanphamBusiness.GetAll();
         }
@@ -57,5 +57,56 @@ namespace API.web.Controllers
             }
         }
 
+        [Route("search_lowtohigh")]
+        [HttpPost]
+        public IActionResult Search_lowtohigh([FromBody] Dictionary<string, object> formData)
+        {
+            try
+            {
+                var page = int.Parse(formData["page"].ToString());
+                var pageSize = int.Parse(formData["pageSize"].ToString());
+                long total = 0;
+                var data = _sanphamBusiness.Search_lowtohigh(page, pageSize, out total);
+                return Ok(
+                    new
+                    {
+                        TotalItems = total,
+                        Data = data,
+                        Page = page,
+                        PageSize = pageSize
+                    }
+                    );
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [Route("search_hightolow")]
+        [HttpPost]
+        public IActionResult Search_hightolow([FromBody] Dictionary<string, object> formData)
+        {
+            try
+            {
+                var page = int.Parse(formData["page"].ToString());
+                var pageSize = int.Parse(formData["pageSize"].ToString());
+                long total = 0;
+                var data = _sanphamBusiness.Search_hightolow(page, pageSize, out total);
+                return Ok(
+                    new
+                    {
+                        TotalItems = total,
+                        Data = data,
+                        Page = page,
+                        PageSize = pageSize
+                    }
+                    );
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
